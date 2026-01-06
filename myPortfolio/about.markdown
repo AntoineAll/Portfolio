@@ -15,7 +15,7 @@ experiences:
   - poste: "Equipe KYC - Job d'été"
     entreprise: "CEGC Paris Austerlitz (2025)"
   - poste: "Responsable Communication"
-    entreprise: "Kernel Panic Systems - ESIEA (2024-Présent)"
+    entreprise: "Kernel Panic Systems - ESIEA (2024-2025)"
   - poste: "Stagiaire Développement Python"
     entreprise: "BPCE-IT (2023)"
 
@@ -27,6 +27,6 @@ competences:
 # Tableau 4: Centres d'intérêt
 interets:
   - "Automobile (Compétitions)"
-  - "Horlogerie (Mécaniques)"
+  - "Horlogerie (Mécaniques & Histoires)"
   - "Karaté (10 ans en club)"
 ---
