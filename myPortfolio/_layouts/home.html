@@ -1,24 +1,77 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>{{ page.title }}</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; font-family: sans-serif; }
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: sans-serif;
+        }
+
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ page.background_image }}');
+            background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+            url('{{ page.background_image }}');
             background-size: cover;
             background-position: center;
             height: 100vh;
             display: flex;
             flex-direction: column;
         }
-        nav { display: flex; justify-content: space-between; padding: 20px 50px; color: white; }
-        .nav-links a { color: white; text-decoration: none; margin-left: 20px; }
-        .center-title { margin: auto; color: white; text-align: center; }
-        h1 { font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            /* Fond blanc à 80% d'opacité */
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            /* Légère ombre pour le menu */
+        }
+
+        .name {
+            font-weight: bold;
+            font-size: 1rem;
+            color: #ffffff;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #9c0000;
+        }
+
+        .center-title {
+            margin: auto;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
     </style>
 </head>
+
 <body>
     <div class="hero">
         <nav>
@@ -35,4 +88,5 @@
         </div>
     </div>
 </body>
+
 </html>
