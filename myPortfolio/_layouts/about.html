@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; }
+        
+        /* Arrière-plan avec l'image du couloir */
+        .main-container {
+            background: url('{{ page.background_image }}') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+
+        /* Bandeau de navigation (Style identique à l'accueil) */
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 15px 50px; 
+            background-color: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(8px);
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            box-sizing: border-box;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav .name { font-weight: bold; color: #333; }
+        nav .links a { color: #333; text-decoration: none; margin-left: 20px; font-weight: 500; }
+
+        /* Zones interactives des tableaux */
+        .tableau-trigger {
+            position: absolute;
+            width: 18%; /* Largeur d'un cadre sur l'image */
+            height: 45%; /* Hauteur d'un cadre sur l'image */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        /* L'effet de Hover Blanc à 80% */
+        .tableau-trigger:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Contenu masqué par défaut */
+        .info-content {
+            opacity: 0;
+            text-align: center;
+            padding: 15px;
+            color: #111;
+            transition: opacity 0.3s;
+        }
+
+        .tableau-trigger:hover .info-content {
+            opacity: 1;
+        }
+
+        /* Positionnement des 4 tableaux sur l'image (À AJUSTER) */
+        .pos-1 { top: 25%; left: 5%; }
+        .pos-2 { top: 25%; left: 28%; }
+        .pos-3 { top: 25%; left: 51%; }
+        .pos-4 { top: 25%; left: 74%; }
+
+        h3 { border-bottom: 2px solid #333; padding-bottom: 5px; margin-bottom: 15px; font-size: 1.2rem; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        li { margin-bottom: 10px; font-size: 0.9rem; line-height: 1.4; }
+        strong { color: #000; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="name">ANTOINE ALLARD</div>
+        <div class="links">
+            <a href="/">Accueil</a>
+            <a href="/about">À propos</a>
+            <a href="/projects">Projets</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="tableau-trigger pos-1">
+            <div class="info-content">
+                <h3>Formations</h3>
+                <ul>
+                    {% for f in page.formations %}
+                    <li><strong>{{ f.titre }}</strong><br>{{ f.detail }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="tableau-trigger pos-2">
+            <div class="info-content">
+                <h3>Expériences</h3>
+                <ul>
+                    {% for exp in page.experiences %}
+                    <li><strong>{{ exp.poste }}</strong><br>{{ exp.entreprise }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="tableau-trigger pos-3">
+            <div class="info-content">
+                <h3>Compétences</h3>
+                <p><strong>Techniques :</strong><br>{{ page.competences.techniques }}</p>
+                <p style="margin-top:10px;"><strong>Qualités :</strong><br>{{ page.competences.qualites }}</p>
+            </div>
+        </div>
+
+        <div class="tableau-trigger pos-4">
+            <div class="info-content">
+                <h3>Intérêts</h3>
+                <ul>
+                    {% for i in page.interets %}
+                    <li>{{ i }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
