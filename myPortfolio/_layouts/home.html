@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page.title }}</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; font-family: sans-serif; }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ page.background_image }}');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        nav { display: flex; justify-content: space-between; padding: 20px 50px; color: white; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; }
+        .center-title { margin: auto; color: white; text-align: center; }
+        h1 { font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <nav>
+            <div class="name">Antoine ALLARD</div>
+            <div class="nav-links">
+                <a href="/about">À propos</a>
+                <a href="/projects">Projets</a>
+                <a href="/contact">Contact</a>
+            </div>
+        </nav>
+        <div class="center-title">
+            <h1>{{ page.title }}</h1>
+            <p>{{ content }}</p>
+        </div>
+    </div>
+</body>
+</html>
