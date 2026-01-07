@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page.title }}</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+        
+        .desk-container {
+            background: #1a1c2c url('{{ page.background_image | relative_url }}') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav { 
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 50px; background-color: rgba(255, 255, 255, 0.2); 
+            backdrop-filter: blur(10px); position: fixed; top: 0; width: 100%; z-index: 1000; box-sizing: border-box;
+        }
+        nav a { color: #333; text-decoration: none; margin-left: 20px; font-weight: bold; }
+        a:hover {color: #9c0000;}
+
+        .computer-monitor {
+            width: 650px;
+            height: 380px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 4px solid #333;
+            border-radius: 10px;
+            display: flex;
+            padding: 20px;
+            color: #2ecc71; 
+            font-family: 'Courier New', monospace;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        .sidebar { width: 40%; border-right: 1px solid #2ecc71; padding-right: 15px; overflow-y: auto; }
+        .display { width: 60%; padding-left: 20px; overflow-y: auto; }
+
+        .item { 
+            cursor: pointer; padding: 10px; margin: 8px 0; border: 1px solid #2ecc71; 
+            font-size: 0.8rem; transition: 0.3s;
+        }
+        .item:hover { background: rgba(46, 204, 113, 0.2); }
+        
+        .btn-link { color: #000; background: #2ecc71; padding: 8px; text-decoration: none; display: inline-block; margin-top: 15px; font-weight: bold; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div style="color:#333">ANTOINE ALLARD</div>
+        <div>
+            <a href="/">Accueil</a>
+            <a href="/about">À propos</a>
+            <a href="/projects">Projets</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="desk-container">
+        <div class="computer-monitor">
+            <div class="sidebar">
+                <h3>./PROJETS_LIST</h3>
+                {% for p in site.projects %}
+                <div class="item" onclick="update('{{ p.title }}', '{{ p.objective }}', '{{ p.github_repo }}', '{{ p.github_pages }}')">
+                    > {{ p.title }}
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="display" id="screen">
+                <h3>TERMINAL_READY</h3>
+                <p>Choisissez un projet pour afficher les logs techniques.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function update(title, obj, repo, live) {
+            document.getElementById('screen').innerHTML = `
+                <h3>${title}</h3>
+                <p style="color:#fff">> OBJECTIF : ${obj}</p>
+                <a href="${repo}" target="_blank" class="btn-link">GITHUB</a>
+                <a href="${live}" target="_blank" class="btn-link">LIVE_DEMO</a>
+            `;
+        }
+    </script>
+
+</body>
+</html>
