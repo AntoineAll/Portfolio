@@ -29,4 +29,5 @@ interets:
   - "Automobile (Compétitions)"
   - "Horlogerie (Mécaniques & Histoires)"
   - "Karaté (10 ans en club)"
+  - "Architecture"
 ---
