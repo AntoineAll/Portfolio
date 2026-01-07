@@ -6,7 +6,7 @@
     <style>
         body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', Tahoma, sans-serif; overflow: hidden; }
         
-        .kitchen-bg {
+        .veranda-bg {
             background: url('{{ page.background_image | relative_url }}') no-repeat center center fixed;
             background-size: cover;
             height: 100vh;
@@ -29,7 +29,7 @@
 
         /* Conteneur Formulaire + Infos */
         .contact-card {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.4);
             padding: 40px;
             border-radius: 15px;
             width: 700px;
@@ -44,7 +44,7 @@
         .contact-info { width: 40%; border-right: 1px solid #ddd; padding-right: 20px; }
         .contact-info h2 { color: #2ecc71; margin-top: 0; font-size: 1.5rem; }
         .info-item { margin-bottom: 20px; }
-        .info-item label { display: block; font-size: 0.7rem; font-weight: bold; color: #777; text-transform: uppercase; }
+        .info-item label { display: block; font-size: 0.7rem; font-weight: bold; color: #000000; text-transform: uppercase; }
         .info-item a, .info-item p { color: #ff0000; text-decoration: none; font-size: 0.95rem; margin: 5px 0; word-break: break-all; }
         .info-item a:hover { color: #2ecc71; text-decoration: underline; }
 
@@ -65,7 +65,7 @@
 
         .social-icons { margin-top: 20px; display: flex; gap: 15px; }
         .social-btn { 
-            background: #333; color: white; padding: 8px 12px; 
+            background: #2ecc71; color: white; padding: 8px 12px; 
             border-radius: 5px; text-decoration: none; font-size: 0.8rem;
         }
         .social-btn:hover { background: #000; }
@@ -83,7 +83,7 @@
         </div>
     </nav>
 
-    <div class="kitchen-bg">
+    <div class="veranda-bg">
         <div class="contact-card">
             
             <div class="contact-info">
@@ -100,7 +100,7 @@
                         <a href="{{ page.github_url }}" target="_blank" class="social-btn">GitHub</a>
                     </div>
                 </div>
-                <p style="font-size: 0.8rem; color: #888; margin-top: 40px;">
+                <p style="font-size: 0.8rem; color: #000000; margin-top: 40px;">
                     N'hésitez pas à m'envoyer un message pour toute proposition de collaboration.
                 </p>
             </div>
