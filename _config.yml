@@ -5,7 +5,7 @@ description: >-
   Étudiant à Epitech - Portfolio professionnel présentant mes projets de développement
   et mon parcours dans le numérique.
 baseurl: "/Portfolio" 
-url: "https://AntoineAll.github.io" # A Remplacer par l'URL finale
+url: "https://antoineall.github.io/Portfolio/" #https://AntoineAll.github.io 
 github_username: AntoineAll
 
 collections:
