@@ -19,8 +19,8 @@ plugins:
   - jekyll-feed
 
 # Exclude from processing
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules/
-  - vendor/
+#exclude:
+#  - Gemfile
+ # - Gemfile.lock
+  #- node_modules/
+  #- vendor/
