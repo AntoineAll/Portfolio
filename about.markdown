@@ -1,7 +1,7 @@
 ---
 layout: about
 title: "À Propos d'Antoine Allard"
-background_image: "/assets/images/couloir_back.jpg"
+background_image: "./assets/images/couloir_back.jpg"
 
 # Tableau 1: Formations & Diplômes
 formations:
