@@ -15,7 +15,7 @@
 
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-            url('{{ page.background_image }}');
+            url('{{ page.background_image | relative_url }}');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -27,8 +27,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 50px;
-            /* Fond blanc à 80% d'opacité */
+            padding: 10px 50px; /* Réduit un peu le padding pour compenser la taille du logo */
             background-color: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(8px);
             position: fixed;
@@ -37,7 +36,22 @@
             box-sizing: border-box;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            /* Légère ombre pour le menu */
+        }
+
+        /* Conteneur pour le Logo + Nom */
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Espace entre le logo et le nom */
+        }
+
+        /* Style du logo en cercle */
+        .nav-logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%; /* Cercle parfait */
+            object-fit: cover; /* Évite de déformer l'image */
+            border: 2px solid rgba(255, 255, 255, 0.5); /* Petit liseré blanc */
         }
 
         .name {
@@ -75,13 +89,18 @@
 <body>
     <div class="hero">
         <nav>
-            <div class="name">Antoine ALLARD</div>
+            <div class="brand-container">
+                <img src="{{ '/assets/images/logo_AAA.jpg' | relative_url }}" alt="Logo" class="nav-logo">
+                <div class="name">Antoine ALLARD</div>
+            </div>
+
             <div class="nav-links">
-                <a href="./about">À propos</a>
-                <a href="./projects">Projets</a>
-                <a href="./contact">Contact</a>
+                <a href="{{ '/about' | relative_url }}">À propos</a>
+                <a href="{{ '/projects' | relative_url }}">Projets</a>
+                <a href="{{ '/contact' | relative_url }}">Contact</a>
             </div>
         </nav>
+
         <div class="center-title">
             <h1>{{ page.title }}</h1>
             <p>{{ content }}</p>
