@@ -21,7 +21,7 @@ experiences:
 
 # Tableau 3: Compétences
 competences:
-  techniques: "C, Python, HTML/CSS, PHP, Javascript, PHP, SQL"
+  techniques: "C, Python, HTML/CSS, PHP, Javascript, SQL"
   qualites: "Assiduité, Esprit d'équipe, Aisance orale"
 
 # Tableau 4: Centres d'intérêt
