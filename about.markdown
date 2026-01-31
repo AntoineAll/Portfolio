@@ -21,7 +21,7 @@ experiences:
 
 # Tableau 3: Compétences
 competences:
-  techniques: "C, Python, HTML/CSS, Suite Office 365"
+  techniques: "C, Python, HTML/CSS, PHP, Javascript, PHP, SQL"
   qualites: "Assiduité, Esprit d'équipe, Aisance orale"
 
 # Tableau 4: Centres d'intérêt
