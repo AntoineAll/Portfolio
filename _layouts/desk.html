@@ -4,59 +4,118 @@
     <meta charset="UTF-8">
     <title>{{ page.title }}</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            font-family: 'Segoe UI', sans-serif; 
+            overflow: hidden; 
+            background-color: #1a1c2c; /* Couleur de secours */
+        }
         
+        /* Conteneur principal avec effet de flou sur l'image de fond */
         .desk-container {
-            background: #1a1c2c url('{{ page.background_image | relative_url }}') no-repeat center center fixed;
-            background-size: cover;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .desk-container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('{{ page.background_image | relative_url }}') no-repeat center center fixed;
+            background-size: cover;
+            filter: blur(5px); /* Flou léger sur la pièce */
+            transform: scale(1.05); /* Évite les bords blancs du flou */
+            z-index: 1;
         }
 
         nav { 
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 50px; background-color: rgba(255, 255, 255, 0.2); 
-            backdrop-filter: blur(10px); position: fixed; top: 0; width: 100%; z-index: 1000; box-sizing: border-box;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 15px 50px; 
+            background-color: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(10px); 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        nav a { color: #ffffff; text-decoration: none; margin-left: 20px; font-weight: bold; }
-        nav a:hover { color: #9c0000; }
 
-        .name { font-weight: bold; font-size: 1rem; color: #ffffff; }
+        nav a { color: #ffffff; text-decoration: none; margin-left: 20px; font-weight: bold; transition: 0.3s; }
+        nav a:hover { color: #2ecc71; }
 
+        .name { font-weight: bold; font-size: 1rem; color: #ffffff; letter-spacing: 1px; }
+
+        /* Style du Moniteur - Option Halo */
         .computer-monitor {
+            position: relative;
+            z-index: 2; /* Passe au-dessus du fond flou */
             width: 700px;
             height: 450px;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.85);
             border: 4px solid #333;
-            border-radius: 10px;
+            border-radius: 12px;
             display: flex;
             padding: 20px;
             padding-top: 10px;
             color: #2ecc71; 
             font-family: 'Courier New', monospace;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
-            backdrop-filter: blur(4px);
+            /* Combinaison d'ombre portée et de lueur diffuse verte */
+            box-shadow: 
+                0 0 50px rgba(0, 0, 0, 0.9), 
+                0 0 20px rgba(46, 204, 113, 0.15); 
+            backdrop-filter: blur(8px);
         }
 
         .sidebar { width: 35%; border-right: 1px solid #2ecc71; padding-right: 15px; overflow-y: auto; }
         .display { width: 65%; padding-left: 20px; overflow-y: auto; font-size: 0.85rem; }
 
+        /* Items de la liste avec effet de lueur au survol */
         .item { 
-            cursor: pointer; padding: 10px; margin: 8px 0; border: 1px solid #2ecc71; 
-            font-size: 0.8rem; transition: 0.3s;
+            cursor: pointer; 
+            padding: 10px; 
+            margin: 8px 0; 
+            border: 1px solid #2ecc71; 
+            font-size: 0.8rem; 
+            transition: all 0.3s;
         }
-        .item:hover { background: rgba(46, 204, 113, 0.2); }
+        .item:hover { 
+            background: rgba(46, 204, 113, 0.2); 
+            box-shadow: 0 0 10px rgba(46, 204, 113, 0.4);
+            transform: translateX(5px);
+        }
         
-        .btn-link { color: #000; background: #2ecc71; padding: 8px; text-decoration: none; display: inline-block; margin-top: 15px; font-weight: bold; font-size: 0.75rem; margin-right: 10px; }
-        .btn-link:hover { background: #fff; }
+        .btn-link { 
+            color: #000; 
+            background: #2ecc71; 
+            padding: 8px; 
+            text-decoration: none; 
+            display: inline-block; 
+            margin-top: 15px; 
+            font-weight: bold; 
+            font-size: 0.75rem; 
+            margin-right: 10px; 
+            transition: 0.3s;
+        }
+        .btn-link:hover { background: #fff; box-shadow: 0 0 10px #fff; }
 
         .term-label { color: #fff; font-weight: bold; display: block; margin-top: 10px; text-decoration: underline; }
 
+        /* Personnalisation de la scrollbar pour le style terminal */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #2ecc71; }
+
         /* MEDIA QUERY DESK */
         @media (max-width: 768px) {
-            .computer-monitor { width: 90%; height: 80vh; flex-direction: column; }
+            .computer-monitor { width: 95%; height: 80vh; flex-direction: column; }
             .sidebar { width: 100%; height: 35%; border-right: none; border-bottom: 1px solid #2ecc71; padding-bottom: 10px; }
             .display { width: 100%; padding-left: 0; padding-top: 10px; }
         }
@@ -66,7 +125,7 @@
 
     <nav>
         <div class="name">ANTOINE ALLARD</div>
-        <div>
+        <div class="nav-links">
             <a href="../">Accueil</a>
             <a href="../about">À propos</a>
             <a href="../projects">Projets</a>

@@ -7,14 +7,25 @@
     <style>
         body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
         
+        /* Conteneur principal avec pseudo-élément pour le flou du fond */
         .main-container {
-            background: url('{{ page.background_image }}') no-repeat center center fixed;
-            background-size: cover;
             height: 100vh;
             width: 100vw;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+        }
+
+        .main-container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('{{ page.background_image }}') no-repeat center center fixed;
+            background-size: cover;
+            filter: blur(5px); /* Flou du fond pour la lisibilité */
+            transform: scale(1.05); /* Évite les bords blancs */
+            z-index: 1;
         }
 
         /* Navigation */
@@ -27,82 +38,67 @@
         nav .links a { color: #333; text-decoration: none; margin-left: 20px; font-weight: 500; }
         .links a:hover {color: #9c0000;}
 
-        /* Grille en Carré (2x2) */
+        /* Grille (2x2) */
         .quad-grid {
+            position: relative;
+            z-index: 2; /* Au-dessus du fond flou */
             display: grid;
-            grid-template-columns: repeat(2, 250px); 
-            grid-template-rows: repeat(2, 250px); 
-            gap: 20px;
+            grid-template-columns: repeat(2, 280px); /* Un peu plus large pour le contenu */
+            grid-template-rows: repeat(2, 280px); 
+            gap: 25px;
             margin-top: 50px;
         }
 
         .tableau-card {
-            background-color: transparent;
-            border: 2px solid rgba(255, 255, 255, 0.3); /* Simule le cadre du tableau */
-            border-radius: 5px;
+            /* Rendu visible en permanence avec un effet verre dépoli léger */
+            background-color: rgba(255, 255, 255, 0.15); 
+            backdrop-filter: blur(3px);
+            border: 1px solid rgba(255, 255, 255, 0.4); 
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.4s ease;
-            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        /* Effet Hover Blanc 80% */
+        /* Effet HOVER : Zoom et éclaircissement */
         .tableau-card:hover {
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(5px);
-            transform: scale(1.05);
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(0px); /* Net au survol */
+            transform: scale(1.1); /* Zoom plus prononcé */
+            z-index: 10;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.4);
         }
 
+        /* Contenu visible en permanence mais plus discret */
         .info-content {
-            opacity: 0;
+            opacity: 0.8; /* Légèrement transparent par défaut */
             text-align: center;
             padding: 20px;
-            color: #111;
-            transition: opacity 0.3s;
+            color: #fff; /* Blanc sur le fond sombre du mur */
+            transition: all 0.3s;
         }
 
         .tableau-card:hover .info-content {
             opacity: 1;
+            color: #111; /* Noir pour le contraste sur fond blanc au hover */
         }
 
-        h3 { border-bottom: 2px solid #333; padding-bottom: 5px; margin-bottom: 10px; font-size: 1.1rem; }
+        h3 { border-bottom: 2px solid currentColor; padding-bottom: 5px; margin-bottom: 15px; font-size: 1.2rem; }
         ul { list-style: none; padding: 0; margin: 0; }
-        li { margin-bottom: 8px; font-size: 0.85rem; line-height: 1.3; }
+        li { margin-bottom: 10px; font-size: 0.9rem; line-height: 1.4; }
 
-        /* MEDIA QUERY ABOUT */
+        /* MEDIA QUERY */
         @media (max-width: 768px) {
-        .main-container {
-            overflow-y: auto; /* Scroll si liste longue*/
-            display: block; 
-            padding-top: 70px;
+            .main-container { overflow-y: auto; display: block; padding-top: 80px; }
+            .main-container::before { position: fixed; } /* Le fond reste fixe au scroll */
+            .quad-grid { grid-template-columns: 90%; grid-template-rows: auto; justify-content: center; margin: 0 auto; gap: 20px; padding-bottom: 50px;}
+            .tableau-card { background-color: rgba(255, 255, 255, 0.85); transform: none !important; }
+            .info-content { opacity: 1; color: #111; }
+            nav .name { display: none; }
         }
-
-        .quad-grid {
-            grid-template-columns: 90%; 
-            grid-template-rows: auto;
-            justify-content: center;
-            margin: 0 auto;
-            gap: 10px;
-        }
-
-        .tableau-card {
-            height: auto;
-            min-height: 150px;
-            background-color: rgba(255, 255, 255, 0.7);
-        }
-
-        .info-content {
-            opacity: 1; /* Enlève le hover du desktop*/
-            position: relative;
-            padding: 5px 10px;
-        }
-        
-        nav { padding: 15px 20px; }
-        nav .links a { margin-left: 10px; font-size: 0.8rem; }
-        nav .name { display: none; }
-    }
     </style>
 </head>
 <body>
