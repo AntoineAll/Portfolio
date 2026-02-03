@@ -131,13 +131,13 @@
                 <h3>./PROJETS_LIST</h3>
                 {% for p in site.projects %}
                 <div class="item" 
-                    data-title="{{ p.title | escape }}"
-                    data-context="{{ p.context | escape }}"
-                    data-objective="{{ p.objective | escape }}"
-                    data-technos="{{ p.technos | escape }}"
-                    data-repo="{{ p.github_repo }}"
-                    data-live="{{ p.github_pages | default: '' }}"
-                    onclick="updateFromData(this)">
+                     data-title="{{ p.title | escape }}"
+                     data-context="{{ p.context | escape }}"
+                     data-objective="{{ p.objective | escape }}"
+                     data-technos="{{ p.technos | escape }}"
+                     data-repo="{{ p.github_repo }}"
+                     data-live="{{ p.github_pages | default: '' }}"
+                     onclick="updateFromData(this)">
                     > {{ p.title }}
                 </div>
                 {% endfor %}
@@ -154,6 +154,7 @@
     <script>
         function updateFromData(element) 
         {
+            // Récupération des données via les attributs HTML
             const title = element.getAttribute('data-title');
             const context = element.getAttribute('data-context');
             const objective = element.getAttribute('data-objective');
@@ -162,8 +163,9 @@
             const live = element.getAttribute('data-live');
 
             let liveButton = "";
-            // La condition demandée : si live n'est pas vide, on met le bouton
-            if (live && live.trim() !== "" && live !== "nil") {
+            // Condition : si le lien live existe et n'est pas vide
+            if (live && live.trim() !== "" && live !== "nil") 
+            {
                 liveButton = `<a href="${live}" target="_blank" class="btn-link">[ DEMO_LIVE ]</a>`;
             }
 
