@@ -4,5 +4,5 @@ context: "Ce projet consiste à concevoir un générateur de CV en ligne, permet
 objective: "L'application repose sur un projet web complet mêlant HTML, CSS, Bootstrap et JavaScript pour l'interface utilisateur, ainsi que PHP pour l'export en PDF côté serveur."
 technos: "HTML, CSS, Bootstrap, JavaScript, PHP, Dompdf"
 github_repo: "https://github.com/AntoineAll/Generateur-de-CV"
-github_pages: "https://antoineall.github.io/Generateur-de-CV/"
+github_pages: ""
 ---

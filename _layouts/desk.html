@@ -10,10 +10,9 @@
             height: 100%; 
             font-family: 'Segoe UI', sans-serif; 
             overflow: hidden; 
-            background-color: #1a1c2c; /* Couleur de secours */
+            background-color: #1a1c2c; 
         }
         
-        /* Conteneur principal avec effet de flou sur l'image de fond */
         .desk-container {
             height: 100vh;
             display: flex;
@@ -29,8 +28,8 @@
             top: 0; left: 0; right: 0; bottom: 0;
             background: url('{{ page.background_image | relative_url }}') no-repeat center center fixed;
             background-size: cover;
-            filter: blur(5px); /* Flou léger sur la pièce */
-            transform: scale(1.05); /* Évite les bords blancs du flou */
+            filter: blur(5px);
+            transform: scale(1.05);
             z-index: 1;
         }
 
@@ -54,10 +53,9 @@
 
         .name { font-weight: bold; font-size: 1rem; color: #ffffff; letter-spacing: 1px; }
 
-        /* Style du Moniteur - Option Halo */
         .computer-monitor {
             position: relative;
-            z-index: 2; /* Passe au-dessus du fond flou */
+            z-index: 2;
             width: 700px;
             height: 450px;
             background: rgba(0, 0, 0, 0.85);
@@ -68,17 +66,13 @@
             padding-top: 10px;
             color: #2ecc71; 
             font-family: 'Courier New', monospace;
-            /* Combinaison d'ombre portée et de lueur diffuse verte */
-            box-shadow: 
-                0 0 50px rgba(0, 0, 0, 0.9), 
-                0 0 20px rgba(46, 204, 113, 0.15); 
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), 0 0 20px rgba(46, 204, 113, 0.15); 
             backdrop-filter: blur(8px);
         }
 
         .sidebar { width: 35%; border-right: 1px solid #2ecc71; padding-right: 15px; overflow-y: auto; }
         .display { width: 65%; padding-left: 20px; overflow-y: auto; font-size: 0.85rem; }
 
-        /* Items de la liste avec effet de lueur au survol */
         .item { 
             cursor: pointer; 
             padding: 10px; 
@@ -109,11 +103,9 @@
 
         .term-label { color: #fff; font-weight: bold; display: block; margin-top: 10px; text-decoration: underline; }
 
-        /* Personnalisation de la scrollbar pour le style terminal */
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: #2ecc71; }
 
-        /* MEDIA QUERY DESK */
         @media (max-width: 768px) {
             .computer-monitor { width: 95%; height: 80vh; flex-direction: column; }
             .sidebar { width: 100%; height: 35%; border-right: none; border-bottom: 1px solid #2ecc71; padding-bottom: 10px; }
@@ -138,7 +130,14 @@
             <div class="sidebar">
                 <h3>./PROJETS_LIST</h3>
                 {% for p in site.projects %}
-                <div class="item" onclick="update('{{ p.title | escape }}', '{{ p.context | escape }}', '{{ p.objective | escape }}', '{{ p.technos | escape }}', '{{ p.github_repo }}', '{{ p.github_pages }}')">
+                <div class="item" 
+                    data-title="{{ p.title | escape }}"
+                    data-context="{{ p.context | escape }}"
+                    data-objective="{{ p.objective | escape }}"
+                    data-technos="{{ p.technos | escape }}"
+                    data-repo="{{ p.github_repo }}"
+                    data-live="{{ p.github_pages | default: '' }}"
+                    onclick="updateFromData(this)">
                     > {{ p.title }}
                 </div>
                 {% endfor %}
@@ -153,7 +152,21 @@
     </div>
 
     <script>
-        function update(title, context, objective, technos, repo, live) {
+        function updateFromData(element) 
+        {
+            const title = element.getAttribute('data-title');
+            const context = element.getAttribute('data-context');
+            const objective = element.getAttribute('data-objective');
+            const technos = element.getAttribute('data-technos');
+            const repo = element.getAttribute('data-repo');
+            const live = element.getAttribute('data-live');
+
+            let liveButton = "";
+            // La condition demandée : si live n'est pas vide, on met le bouton
+            if (live && live.trim() !== "" && live !== "nil") {
+                liveButton = `<a href="${live}" target="_blank" class="btn-link">[ DEMO_LIVE ]</a>`;
+            }
+
             document.getElementById('screen').innerHTML = `
                 <h3>PROJET: ${title}</h3>
                 
@@ -168,7 +181,7 @@
 
                 <div style="margin-top: 20px; border-top: 1px dashed #2ecc71; padding-top: 10px;">
                     <a href="${repo}" target="_blank" class="btn-link">[ CODE_SOURCE ]</a>
-                    <a href="${live}" target="_blank" class="btn-link">[ DEMO_LIVE ]</a>
+                    ${liveButton}
                 </div>
             `;
         }
