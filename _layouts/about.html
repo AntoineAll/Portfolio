@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; overflow: hidden; background-color: #1a1c2c;}
         
         /* Conteneur principal avec pseudo-élément pour le flou du fond */
         .main-container {
@@ -35,8 +35,8 @@
             backdrop-filter: blur(8px); position: fixed; top: 0; width: 100%; z-index: 1000; box-sizing: border-box;
         }
         nav .name { font-weight: bold; color: #333; font-size: 1rem;}
-        nav .links a { color: #333; text-decoration: none; margin-left: 20px; font-weight: 500; }
-        .links a:hover {color: #9c0000;}
+        nav .links a { color: #333; text-decoration: none; margin-left: 20px; font-weight: bold; }
+        .links a:hover {color: #2ecc71;}
 
         /* Grille (2x2) */
         .quad-grid {
