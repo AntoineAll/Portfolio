@@ -13,15 +13,14 @@
             overflow: hidden;
         }
 
-        /* Effet de flou sur l'image de fond pour faire ressortir la box */
         .veranda-bg::before {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background: url('{{ page.background_image | relative_url }}') no-repeat center center fixed;
             background-size: cover;
-            filter: blur(4px); /* Léger flou ambiant */
-            transform: scale(1.05); /* Évite les bords nets sur les côtés */
+            filter: blur(4px);
+            transform: scale(1.05);
             z-index: 1;
         }
 
@@ -39,19 +38,17 @@
             color: #ffffff;
         }
 
-        /* Modifié : Ajout d'un halo de flou autour de la carte */
         .contact-card {
             position: relative;
             z-index: 2;
-            background: rgba(255, 255, 255, 0.35); /* Un peu plus transparent pour le style */
+            background: rgba(255, 255, 255, 0.35);
             padding: 40px;
             border-radius: 15px;
             width: 700px;
             display: flex;
             gap: 40px;
-            /* Box-shadow avec un grand rayon (60px) pour créer le halo de flou */
             box-shadow: 0 20px 60px rgba(0,0,0,0.25), 0 0 40px rgba(255,255,255,0.1);
-            backdrop-filter: blur(12px); /* Flou interne accentué */
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
@@ -126,12 +123,13 @@
                 </p>
             </div>
 
-            <form class="contact-form">
-                <input type="text" placeholder="Nom complet" required>
-                <input type="email" placeholder="Adresse Email" required>
-                <input type="text" placeholder="Sujet">
-                <textarea rows="6" placeholder="Votre message..." required></textarea>
-                <button type="button" onclick="alert('Message simulé ! (Formulaire statique)')">ENVOYER</button>
+            <form action="https://formspree.io/f/mreywpyk" method="POST" class="contact-form">
+                <input type="text" name="name" placeholder="Nom complet" required>
+                <input type="email" name="email" placeholder="Adresse Email" required>
+                <input type="text" name="_subject" placeholder="Sujet">
+                <textarea name="message" rows="6" placeholder="Votre message..." required></textarea>
+                
+                <button type="submit">ENVOYER</button>
             </form>
 
         </div>
