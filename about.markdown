@@ -21,13 +21,14 @@ experiences:
 
 # Tableau 3: Compétences
 competences:
-  techniques: "C, Python, HTML/CSS, PHP, Javascript, SQL"
+  techniques: "C, Python, HTML/CSS, React, PHP, Laravel, Javascript, Docker, SQL, Java"
   qualites: "Assiduité, Esprit d'équipe, Aisance orale"
 
 # Tableau 4: Centres d'intérêt
 interets:
   - "Automobile (Compétitions)"
   - "Horlogerie (Mécaniques & Histoires)"
+  - "Passionné par les nouvelles technologies"
   - "Karaté (10 ans en club)"
   - "Architecture"
 ---
